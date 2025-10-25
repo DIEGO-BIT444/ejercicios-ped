@@ -17,11 +17,7 @@ struct biblioteca
     string ubicacion;
     vector<coleccion_libros> libros;
 };
-struct nodo
-{
-    biblioteca datos;
-    nodo *siguiente;
-};
+
 
 void solicitar_informacion(list<biblioteca> &bibliotecas)
 {
@@ -43,11 +39,44 @@ void solicitar_informacion(list<biblioteca> &bibliotecas)
         cout << "autor: ";
         getline(cin >> ws, l.autor);
         cout << "Año de publicacion: ";
-        getline(cin >> ws, l.anio_publish);
+        cin >> anio_publish;
         cout << "Numero de paginas: ";
-        getline(cin >> ws, l.num_paginas);
-
+        cin >> num_paginas;
+        cin.ignore();
+        
+        libros.push_back(l);
+        
+        cout << "Desea agregar más libros a la biblioteca: (s/n) " << endl;
+        cin >> continuar;
+      
     }
+    bibliotecas.push_back(b);
+    cout << "BIBLIOTECA REGISTRADA\n";
+}
+
+void mostrar_informacion(const list<biblioteca> &bibliotecas){
+if (bibliotecas.empty()){
+    cout << "No hay bibliotecas " << endl;
+}
+
+    for(const auto &b : bibliotecas){
+     cout << "Nombre: " << b.nombre;
+     cout << "Ubicacion " << b.ubicacion;
+     cout << "Libros:\n ";
+        for (const auto &l : b.libros){
+            cout << l.titulo << endl;
+            
+            
+        }
+        
+    }
+}
+
+void ordenar_bibliotecas(list<biblioteca> &bibliotecas){
+    //ordenar la biblioteca por su nombre de forma alfabetica
+    
+
+    
 }
 int main()
 {
