@@ -2,6 +2,7 @@
 #include <vector>
 #include <list>
 #include <algorithm>
+#include <string>
 using namespace std;
 struct coleccion_libros
 {
@@ -74,8 +75,25 @@ if (bibliotecas.empty()){
 
 void ordenar_bibliotecas(list<biblioteca> &bibliotecas){
     //ordenar la biblioteca por su nombre de forma alfabetica
-    
+    bibliotecas.sort([]( const biblioteca &a, const biblioteca &b){
+    return a.nombre < b.nombre; 
+    });
 
+    
+}
+
+void buscar_biblioteca(const list <biblioteca> &bibliotecas){
+    //busqueda de una biblioteca por su nombre y mostrar toda su informacion relacionada
+if (bibliotecas.empty()){
+    cout << "No hay bibliotecas registradas "<< endl;
+    return;
+}
+
+    string busqueda;
+    cout << "Ingrese el nombre de la biblioteca que desea buscar:\n ";
+    getline(cin, busqueda);
+
+    
     
 }
 int main()
