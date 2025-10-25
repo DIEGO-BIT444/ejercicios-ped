@@ -1,0 +1,5 @@
+git clone
+cd nombre de la carpeta
+git add .
+  git commit - "mensaje"
+  git push
