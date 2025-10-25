@@ -81,6 +81,12 @@ void ordenar_bibliotecas(list<biblioteca> &bibliotecas){
 
     
 }
+//ordenar por numero de empleados
+void ordenar_bibliotecas_empleados(std::list<biblioteca> &bibliotecas) {
+    bibliotecas.sort([](const biblioteca &a, const biblioteca &b) {
+        return a.numero_empleados < b.numero_empleados;
+    });
+}
 
 void buscar_biblioteca(const list <biblioteca> &bibliotecas){
     //busqueda de una biblioteca por su nombre y mostrar toda su informacion relacionada
@@ -92,26 +98,28 @@ if (bibliotecas.empty()){
     string busqueda;
     cout << "Ingrese el nombre de la biblioteca que desea buscar:\n ";
     getline(cin, busqueda);
- auto encontrada =  find_if(bibliotecas.begin(), bibliotecas.end()),[&] (const biblioteca &b) {return b.nombre == busqueda; });
-if (encontrada != bibliotecas.end()){
-    cout << "BIBLIOTECA ENCONTRADA\n "; 
-     cout << "Nombre: " << encontrada -> nombre << endl;
-     cout << "Ubicacion: " << encontrada -> ubicacion << endl;
-     cout << "Libros:\n ";
-    for (const auto &l : encontrada -> libros){
+ auto encontrada = find_if(bibliotecas.begin(), bibliotecas.end(),
+                              [&](const biblioteca &b) {
+                                  return b.nombre == busqueda;
+                              });
 
-        cout << " | " << l.titulo << " | " << l.autor << " | " << l.anio_publicacion << " | " 
-        << l.num_paginas << "paginas\n ";
-        
+     Si la encuentra, muestra su información
+    if (encontrada != bibliotecas.end()) {
+        cout << "\n BIBLIOTECA ENCONTRADA:\n";
+        cout << "Nombre: " << encontrada->nombre << endl;
+        cout << "Ubicación: " << encontrada->ubicacion << endl;
+
+        cout << "Libros:\n";
+        for (const auto &l : encontrada->libros) {
+            cout << " | " << l.titulo
+                 << " | " << l.autor
+                 << " | " << l.anio_publicacion
+                 << " | " << l.num_paginas << " páginas\n";
+        }
+    } else {
+        cout << "\nNo se encontró una biblioteca con ese nombre.\n";
+    }
 }
-} else {
-
-    cout << "No se encontro una biblioteca con ese nombre\n ":
-}   
-    
-}
-
-
 int main()
 {
     list<biblioteca> bibliotecas;
