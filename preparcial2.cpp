@@ -92,13 +92,56 @@ if (bibliotecas.empty()){
     string busqueda;
     cout << "Ingrese el nombre de la biblioteca que desea buscar:\n ";
     getline(cin, busqueda);
+ auto encontrada =  find_if(bibliotecas.begin(), bibliotecas.end()),[&] (const biblioteca &b) {return b.nombre == busqueda; });
+if (encontrada != bibliotecas.end()){
+    cout << "BIBLIOTECA ENCONTRADA\n "; 
+     cout << "Nombre: " << encontrada -> nombre << endl;
+     cout << "Ubicacion: " << encontrada -> ubicacion << endl;
+     cout << "Libros:\n ";
+    for (const auto &l : encontrada -> libros){
 
-    
+        cout << " | " << l.titulo << " | " << l.autor << " | " << l.anio_publicacion << " | " 
+        << l.num_paginas << "paginas\n ";
+        
+}
+} else {
+
+    cout << "No se encontro una biblioteca con ese nombre\n ":
+}   
     
 }
+
+
 int main()
 {
     list<biblioteca> bibliotecas;
+    int opcion;
+    do{
+        cout << "--------MENU---------" << endl;
+        cout << "1. agregar biblioteca\n";
+        cout << "2. mostrar informacion\n";
+        cout << "3. ordenar bibliotecas\n";
+        cout << "4. buscar bibliotecas\n";
+        cout << "5. Salir\n";
+        switch (opcion){
+            case 1:
+                solicitar_informacion(bibliotecas);
+            break;
+
+            case 2:
+            mostrar_informacion(bibliotecas);
+            break;
+
+            case 3:
+
+            
+              
+
+            
+        }
+        
+        
+    }while (opcion != 5);
 
     return 0;
 }
