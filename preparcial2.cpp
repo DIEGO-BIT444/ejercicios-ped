@@ -120,6 +120,44 @@ if (bibliotecas.empty()){
         cout << "\nNo se encontró una biblioteca con ese nombre.\n";
     }
 }
+// buscar biblioteca por numero de empleados
+void buscar_biblioteca_por_empleados(const list<biblioteca> &bibliotecas) {
+    // Verificar si la lista está vacía
+    if (bibliotecas.empty()) {
+        cout << "No hay bibliotecas registradas." << endl;
+        return;
+    }
+
+    //  Solicitar número de empleados a buscar
+    int empleados_buscar;
+    cout << "Ingrese el número de empleados de la biblioteca que desea buscar: ";
+    cin >> empleados_buscar;
+    cin.ignore(); // limpia el buffer de entrada
+
+    //  Buscar en la lista con find_if
+    auto encontrada = find_if(bibliotecas.begin(), bibliotecas.end(),
+                              [&](const biblioteca &b) {
+                                  return b.numero_empleados == empleados_buscar;
+                              });
+
+    //  Mostrar resultados
+    if (encontrada != bibliotecas.end()) {
+        cout << "\n📚 BIBLIOTECA ENCONTRADA\n";
+        cout << "Nombre: " << encontrada->nombre << endl;
+        cout << "Ubicación: " << encontrada->ubicacion << endl;
+        cout << "Número de empleados: " << encontrada->numero_empleados << endl;
+
+        cout << "Libros:\n";
+        for (const auto &l : encontrada->libros) {
+            cout << " | " << l.titulo
+                 << " | " << l.autor
+                 << " | " << l.anio_publicacion
+                 << " | " << l.num_paginas << " páginas\n";
+        }
+    } else {
+        cout << "\nNo se encontró una biblioteca con ese número de empleados.\n";
+    }
+}
 int main()
 {
     list<biblioteca> bibliotecas;
