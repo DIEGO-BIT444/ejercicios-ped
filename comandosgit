@@ -6,3 +6,11 @@ code .
 git add .
   git commit - "mensaje"
   git push
+
+
+antes de terminar cualquier feature :
+
+git checkout develop
+git pull origin develop
+git checkout feature/nombre
+git merge develop
